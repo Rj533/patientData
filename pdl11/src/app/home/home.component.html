@@ -1,0 +1,41 @@
+<button class="btn btn-primary" (click)="_router.navigate(['/add'])">Add Patient</button>
+<input
+  [formControl]="searcher"
+  type="text"
+  placeholder="Search Patient"
+  class="form-control mt-2"
+/>
+<div class="patients" *ngIf="patients$ | async as patients">
+  <table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col">Age</th>
+        <th scope="col">Drugs</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients; let i = index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.mobile}}</td>
+        <td>{{ patient.email }}</td>
+        <td>{{ patient.age }}</td>
+        <td>
+          <li *ngFor="let drug of patient.drugs">
+            {{ drug.name }} - {{ drug.description }} 
+          </li>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="editPatient(patient)">Edit</button>
+          <button class="btn btn-danger ms-2" (click)="deletePatient(patient)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

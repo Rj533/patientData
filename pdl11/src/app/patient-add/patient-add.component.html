@@ -1,0 +1,64 @@
+<form [formGroup]="form">
+    <div class="mb-3">
+      <label for="name" class="form-label">Details of The Patient</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Name of the Patient"
+      />
+      <input
+      id="name"
+      type="text"
+      class="form-control"
+      formControlName="mobile"
+      placeholder="Phone Number of the Patient"
+    />
+    <input
+    id="name"
+    type="text"
+    class="form-control"
+    formControlName="email"
+    placeholder="Email of the Patient"
+  />
+  <input
+    id="name"
+    type="text"
+    class="form-control"
+    formControlName="age"
+    placeholder="Age of the Patient"
+  />
+      <button class="btn btn-primary mt-2" (click)="createDrug()">Add Drugs</button>
+    </div>
+    <div
+      class="decks"
+      formArrayName="drugs"
+      *ngFor="let item of drugs; let i = index"
+    >
+      <form class="row g-3" [formGroupName]="i">
+        <div class="col-auto">
+          <label for="name" >Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            formControlName="name"
+            placeholder="Name of the drug"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="cards" >Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cards"
+            formControlName="description"
+            placeholder="Description of the drug"
+          />
+        </div>
+      </form>
+    </div>
+  </form>
+  <button class="btn btn-primary mt-2" (click)="addPatient()" [disabled]="form.invalid">Add Patient</button>
+  
